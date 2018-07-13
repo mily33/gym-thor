@@ -22,6 +22,8 @@ class ThorEnv(gym.Env, utils.EzPickle):
         dirname, filename = os.path.split(os.path.abspath(__file__))
         self.file_path = os.path.join(dirname, "data/%s.h5" % self.scene_name)
 
+        assert os.path.exists(os.path.join(dirname, 'data')), 'scene data haven\'t been download'
+
         self.terminal_id = self.terminal_list[random.randrange(5)]
         self.init_state_id = None
         self.file = h5py.File(self.file_path, 'r')
